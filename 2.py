@@ -1,12 +1,21 @@
-# Combination Sum
-from itertools import combinations
-def combinationsum(candidate,target):
-    ls1=[]
-    for i in range(len(candidate)+1):
-        for j in combinations(candidate,i):
-            if sum(j)==target:
-                ls1.append(j)
-    print(ls1) 
-    
-    
-combinationsum([1,2,3,5],5)     
+def helper(candidate, target, currIndex, result, curr):
+    if target == 0:
+        result.append(list(curr))
+        return
+    elif target<0 or currIndex == len(candidate):
+        return
+    else:
+        curr.append(candidate[currIndex])
+        helper(candidate, target - candidate[currIndex], currIndex, result, curr)
+        curr.pop()
+        helper(candidate, target, currIndex + 1, result, curr)
+
+
+def combinationsum(candidate, target):
+    result = []
+    curr = []
+    index = 0
+    helper(candidate, target, index, result, curr)
+    return result
+
+combinationsum([1,2,3],5)                 
