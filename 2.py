@@ -1,3 +1,11 @@
+
+def combinationsum(candidate, target):
+    result = []
+    curr = []
+    index = 0
+    helper(candidate, target, index, result, curr)
+    return result
+
 def helper(candidate, target, currIndex, result, curr):
     if target == 0:
         result.append(list(curr))
@@ -10,12 +18,4 @@ def helper(candidate, target, currIndex, result, curr):
         curr.pop()
         helper(candidate, target, currIndex + 1, result, curr)
 
-
-def combinationsum(candidate, target):
-    result = []
-    curr = []
-    index = 0
-    helper(candidate, target, index, result, curr)
-    return result
-
-combinationsum([1,2,3],5)                 
+combinationsum([1,2,3],5)                
